@@ -60,6 +60,34 @@ for (const item of itemsToCollect) {
 
 }
 
+const collectedItems = document.querySelector("input[name=items]")
+
+let selectedItems = []
+
 function handleSelectedItem(event) {
-    console.log(event.target)
+    
+    const itemLi = event.target
+    //adicionar ou remover uma classe com javascript
+    itemLi.classList.toggle("selected")
+
+    const itemId = itemLi.dataset.id
+
+    const alreadySelected = selectedItems.findIndex( item => {
+        const itemFound = item == itemId
+        return itemFound
+    })
+
+    if (alreadySelected >= 0){
+        const filteredItems = selectedItems.filter( item => {
+            const itemIsDifferent = item != itemId
+            return itemIsDifferent
+        })
+
+        selectedItems = filteredItems
+    } else {
+        selectedItems.push(itemId)
+    }
+
+    collectedItems.value = selectedItems
+    
 }
