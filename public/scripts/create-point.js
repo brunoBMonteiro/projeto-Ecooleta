@@ -6,7 +6,7 @@ function populateUFs(){
     .then( states => {
 
         for( const state of states ) {
-            ufSelected.innerHTML +=  ` <option value="${state.id}">${state.nome}</option>`
+            ufSelected.innerHTML += ` <option value="${state.id}">${state.nome}</option>`
         }
         
     })
@@ -72,12 +72,16 @@ function handleSelectedItem(event) {
 
     const itemId = itemLi.dataset.id
 
+    //console.log('ITEM ID: ', itemId)
+
     const alreadySelected = selectedItems.findIndex( item => {
         const itemFound = item == itemId
         return itemFound
     })
 
+    // se já estiver selecionado 
     if (alreadySelected >= 0){
+        //tirar da seleção
         const filteredItems = selectedItems.filter( item => {
             const itemIsDifferent = item != itemId
             return itemIsDifferent
@@ -87,6 +91,9 @@ function handleSelectedItem(event) {
     } else {
         selectedItems.push(itemId)
     }
+
+
+   //console.log('selectedItems: ', selectedItems)
 
     collectedItems.value = selectedItems
     
