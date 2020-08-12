@@ -41,7 +41,7 @@ server.post("/savepoint", (req, res) => {
    const query = `
         INSERT INTO places (
             image,
-         name,
+            name,
             address,
             address2,
             state,
